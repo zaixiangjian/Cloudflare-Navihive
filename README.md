@@ -183,7 +183,10 @@ NaviHive 是一个精美的网站导航管理系统，帮助你整理和管理�
    -- 设置初始化标志
    INSERT INTO configs (key, value) VALUES ('DB_INITIALIZED', 'true');
 
-如果连接错误执行下面操作
+
+
+   -- 如果连接错误执行下面操作
+
 
    -- 添加缺失字段 is_public：
    ALTER TABLE groups ADD COLUMN is_public INTEGER DEFAULT 1;
