@@ -182,6 +182,21 @@ NaviHive 是一个精美的网站导航管理系统，帮助你整理和管理�
 
    -- 设置初始化标志
    INSERT INTO configs (key, value) VALUES ('DB_INITIALIZED', 'true');
+
+
+
+
+   -- 添加缺失字段 is_public：
+   ALTER TABLE groups ADD COLUMN is_public INTEGER DEFAULT 1;
+   -- 执行后，再查看：
+   PRAGMA table_info(groups);
+   -- 应该看到 is_public 字段存在，默认值为 1。
+
+   -- 很可能 sites 表同样 缺少 is_public 字段，Worker 查询也会报 500。执行：
+   PRAGMA table_info(sites);
+   -- 如果没有 is_public，执行：
+   ALTER TABLE sites ADD COLUMN is_public INTEGER DEFAULT 1;
+
    ```
 
    - 点击"运行"按钮执行SQL命令：
